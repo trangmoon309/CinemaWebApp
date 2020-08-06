@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "~/Pages/Shared/_MyLayout.cshtml";
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@section Styles {
+    <link href="~/css/contact.css" rel="stylesheet" />
+}
+
+@model CinemaBooking.ViewModels.Home.ContactViewModel;
+
+
+
+<section id="contact">
+
+    <h1 class="section-header">LIÊN HỆ CHO CHÚNG TÔI</h1>
+
+    <div class="contact-wrapper">
+
+        <form class="form-horizontal" role="form" method="post" asp-action="Contact" asp-controller="Home">
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" placeholder="Tên" asp-for="@Model.Username">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" placeholder="Email" asp-for="@Model.FromEmail">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <input type="password" class="form-control" placeholder="Password" asp-for="@Model.Password">
+                </div>
+            </div>
+
+            <textarea class="form-control" rows="10" placeholder="Messeage" asp-for="@Model.Messeage"></textarea>
+
+            <div asp-validation-summary="All" class="text-success valid" style="margin-top:15px;font-size: 24px;"></div>
+
+            <button class="btn btn-danger send-button" id="submit" type="submit" value="SEND">
+                <div class="button">
+                    <i class="fa fa-paper-plane"></i><span class="send-text">SEND</span>
+                </div>
+
+            </button>
+
+        </form>
+
+        <!----------------
+
+        CONTACT PAGE RIGHT
+
+        ----------------->
+
+        <div class="direct-contact-container">
+
+            <ul class="contact-list">
+                <li class="list-item"><i class="fa fa-map-marker fa-2x"><span class="contact-text place">Đà Nẵng | VN</span></i></li>
+
+                <li class="list-item"><i class="fa fa-phone fa-2x"><span class="contact-text phone"><a href="tel:1-212-555-5555" title="Give me a call">0964574425</a></span></i></li>
+
+                <li class="list-item"><i class="fa fa-envelope fa-2x"><span class="contact-text gmail"><a href="mailto:#" title="Send me an email">cinema309@gmail.com</a></span></i></li>
+
+            </ul>
+
+            <hr>
+            <ul class="social-media-list">
+                <li>
+                    <a href="https://github.com/trangmoon309" target="_blank" class="contact-icon">
+                        <i class="fa fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/trangmoon309" target="_blank" class="contact-icon">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com/30thangs9" target="_blank" class="contact-icon">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://codepen.io/trangmoon309" target="_blank" class="contact-icon">
+                        <i class="fa fa-codepen"></i>
+                    </a>
+                </li>
+            </ul>
+            <hr>
+
+            <div class="copyright">&copy; ALL OF THE RIGHTS RESERVED</div>
+
+        </div>
+    </div>
+</section>
+

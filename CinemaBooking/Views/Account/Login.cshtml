@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Pages/Shared/_MyLayout.cshtml";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@section Styles {
+    <link href="~/css/login.css" rel="stylesheet" />
+}
+
+@model CinemaBooking.ViewModels.Account.LoginViewModel;
+@{ 
+    var google = "Google";
+    var facebook = "Facebook";
+}
+
+<div class="login">
+    <form class="login-form" asp-action="Login" asp-controller="Account" method="post" >
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" id="user-name" asp-for="@Model.UserName" placeholder="Email" required tabindex="1" />
+        </div>
+        <div class="input-group input-group-lg">
+            <input type="password" class="form-control" id="password" asp-for="@Model.Password" placeholder="Password" required tabindex="2" />
+        </div>
+        <div class="login-bar">
+            <input type="checkbox" asp-for="@Model.RememberMe" id="stay-signed-in" tabindex="4" /><label for="stay-signed-in" style="font-size:15px">Lưu tài khoản</label>
+            <a asp-action="ResetPassword" asp-controller="ConfirmInfo" class="pull-right" style="font-weight:bold;color: #F6D586">Quên mật khẩu?</a>
+        </div>
+        <input type="submit" id="login" class="btn fa-lg" style="background-color:#A12914;font-size:22px;color:white; " value="ĐĂNG NHẬP" tabindex="3"/>
+        <div asp-validation-summary="All" style="font-size:20px;list-style-type:none"></div>
+    </form>
+
+    <div class="social">
+        <div class="social-inner">
+            <form id="login-google" method="post" asp-action="ExternalLogin" asp-controller="Account" style="display: inline-block;">
+                <input name="provider" type="hidden" value="@google" />
+                <a class="fa fa-2x fa-google btn btn-danger"
+                   onclick="document.getElementById('login-google').submit();"></a>
+            </form>
+
+            <form id="login-facebook" method="post" asp-action="ExternalLogin" asp-controller="Account"  style="display: inline-block;">
+                <input name="provider" type="hidden" value="@facebook" />
+                <a class="fa fa-2x fa-facebook btn btn-primary"
+                   onclick="document.getElementById('login-facebook').submit();"></a>
+            </form>
+        </div>
+    </div>
+
+    <div class="register">
+        <div class="register-inner">
+            <a asp-action="Register" asp-controller="Account" class="btn" style="background-color:#D6A21C;color:white">Đăng ký tài khoản mới</a>
+        </div>
+    </div>
+</div>

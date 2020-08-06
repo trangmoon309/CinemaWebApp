@@ -1,0 +1,68 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>81be9764-8511-46ee-a2d5-0ea4584c0371</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200727171227_Initialize.cs" />
+    <Compile Remove="Migrations\20200727171227_Initialize.Designer.cs" />
+    <Compile Remove="Migrations\20200727171535_Initialize.cs" />
+    <Compile Remove="Migrations\20200727171535_Initialize.Designer.cs" />
+    <Compile Remove="Migrations\20200727172917_SeedCate.cs" />
+    <Compile Remove="Migrations\20200727172917_SeedCate.Designer.cs" />
+    <Compile Remove="Migrations\20200728143258_Initialize.cs" />
+    <Compile Remove="Migrations\20200728143258_Initialize.Designer.cs" />
+    <Compile Remove="Migrations\20200729183228_Nothing.cs" />
+    <Compile Remove="Migrations\20200729183228_Nothing.Designer.cs" />
+    <Compile Remove="Migrations\20200729183852_Initialize.cs" />
+    <Compile Remove="Migrations\20200729183852_Initialize.Designer.cs" />
+    <Compile Remove="Migrations\20200730104121_Update_MovieTable.cs" />
+    <Compile Remove="Migrations\20200730104121_Update_MovieTable.Designer.cs" />
+    <Compile Remove="Migrations\20200730134521_Test.cs" />
+    <Compile Remove="Migrations\20200730134521_Test.Designer.cs" />
+    <Compile Remove="Migrations\20200730135002_Initialize.cs" />
+    <Compile Remove="Migrations\20200730135002_Initialize.Designer.cs" />
+    <Compile Remove="Migrations\20200730135336_Initialize.cs" />
+    <Compile Remove="Migrations\20200730135336_Initialize.Designer.cs" />
+    <Compile Remove="Migrations\20200730140145_Initialize.cs" />
+    <Compile Remove="Migrations\20200730140145_Initialize.Designer.cs" />
+    <Compile Remove="Migrations\20200801161856_Identity.cs" />
+    <Compile Remove="Migrations\20200801161856_Identity.Designer.cs" />
+    <Compile Remove="Migrations\20200802123319_ChangeDateType.cs" />
+    <Compile Remove="Migrations\20200802123319_ChangeDateType.Designer.cs" />
+    <Compile Remove="Migrations\20200802123704_Update.cs" />
+    <Compile Remove="Migrations\20200802123704_Update.Designer.cs" />
+    <Compile Remove="Migrations\20200802124120_ChangeDataTypeForBookingIdAndSeatIdToInt.cs" />
+    <Compile Remove="Migrations\20200802124120_ChangeDataTypeForBookingIdAndSeatIdToInt.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MailKit" Version="2.8.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Core" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="3.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.jQuery.Unobtrusive.Ajax" Version="3.2.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="NETCore.MailKit" Version="2.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\imgs\films\" />
+  </ItemGroup>
+
+</Project>

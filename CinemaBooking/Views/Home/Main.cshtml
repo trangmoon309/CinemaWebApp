@@ -1,0 +1,251 @@
+﻿
+@{
+    ViewData["Title"] = "Main";
+    Layout = "~/Pages/Shared/_MyLayout.cshtml";
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+
+
+@section Styles {
+    <link href="~/css/mainpage.css" rel="stylesheet" />
+}
+
+@model List<CinemaBooking.ViewModels.Film.MovieViewModel>;
+@{
+    var firstPath = "~/imgs/films/" + (@Model[0].Photo ?? "default.jpg");
+    List<CinemaBooking.Models.Category> categories = ViewBag.Categories;
+    string typeFilm;
+}
+
+<div class="main-container">
+    <div class="main-carousel">
+        @{
+            string flag = "a";
+            for (int i = 0; i < 6; i++)
+            {
+                var photoPath = "~/imgs/films/" + (@Model[i].Photo ?? "default.jpg");
+
+                if (i == 1) flag = "b";
+                if (i == 2) flag = "c";
+                if (i == 3) flag = "d";
+                if (i == 4) flag = "e";
+                if (i == 5) flag = "f";
+
+                <div class="main-item @flag" style="text-transform:uppercase">
+                    <img src="@photoPath" asp-append-version="true" />
+                </div>
+            }
+        }
+
+    </div>
+</div>
+<div class="prev btn btn-danger"><i class="fa fa-arrow-left"></i></div>
+<div class="next btn btn-danger"><i class="fa fa-arrow-right"></i></div>
+
+
+
+<div class="tile" id="tile-1">
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs nav-justified" role="tablist">
+        <div class="slider"></div>
+        <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fa fa-film"></i> Phim đang chiếu</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fa fa-camera"></i> Phim sắp chiếu</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#type" role="tab" aria-controls="profile" aria-selected="false"><i class="fa fa-ellipsis-h "></i> Thể loại</a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content" style="background-color: rgba(36,32,32,0.9)">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="movie-list">
+                @{
+                    for (int i = 0; i < Model.Count; i++)
+                    {
+                        var photoPath = "~/imgs/films/" + (@Model[i].Photo ?? "default.jpg");
+
+                        //if (DateTime.Now >= Model[i].fromDate && DateTime.Now <= Model[i].toDate)
+                        {
+                            <div class="movie-item row" style="margin-bottom:20px;">
+                                <div class="item-info col-md-9">
+                                    <img src="@photoPath" asp-append-version="true" style="width:28%; float:left;clear:both" />
+                                    <div class="movie-description" style="float:left;width:65%">
+                                        <h5 style="text-transform:uppercase">@Model[i].Title</h5>
+                                        <span>@Model[i].Hour hours | @Model[i].Type</span> <br />
+                                        <p style="font-size:14px;">
+                                            <strong>Directed by</strong> @Model[i].Director <br />
+                                            <strong>Stars</strong> @Model[i].Star<br />
+                                            @Model[i].Description
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="item-timestamp col-md-3">
+                                    <a asp-action="FilmDetail" asp-controller="Film" asp-route-filmId="@Model[i].Id" class="button">MUA VÉ</a>
+                                    <a asp-action="FilmDetail" asp-controller="Film" asp-route-filmId="@Model[i].Id" class="button">XEM CHI TIẾT</a>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+
+
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            @{
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    var photoPath = "~/imgs/films/" + (@Model[i].Photo ?? "default.jpg");
+
+                    if (DateTime.Now < Model[i].fromDate)
+                    {
+                        <div class="movie-item row" style="margin-bottom:20px;">
+                            <div class="item-info col-md-9">
+                                <img src="@photoPath" asp-append-version="true" style="width:28%; float:left;clear:both" />
+                                <div class="movie-description" style="float:left;width:65%">
+                                    <h5 style="text-transform:uppercase">@Model[i].Title</h5>
+                                    <span>@Model[i].Hour hours | @Model[i].Type</span> <br />
+                                    <p style="font-size:14px;">
+                                        <strong>Directed by</strong> @Model[i].Director <br />
+                                        <strong>Stars</strong> @Model[i].Star<br />
+                                        @Model[i].Description
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="item-timestamp col-md-3">
+
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
+
+        <div class="tab-pane fade" id="type" role="tabpanel" aria-labelledby="profile-tab">
+
+            <div class="dropdown">
+                <a href="javascript:void(0)" class="dropdown-toggle btn btn-primary" data-toggle="dropdown" aria-expanded="false"  style="width:100%;background-color:#A12914;border:none">
+                    Thể loại
+                </a>
+                <ul class="dropdown-menu animated fadeInUp " style="width:100%">
+                    @{
+                        for (int i = 0; i < categories.Count ;i++)
+                        {
+                            string cateid = "cate" + i.ToString();
+                            <li>
+                                <a class="hvr-bounce-to-right" id="@cateid" onclick="showMovieItem('#@cateid')">@categories[i].Name</a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+            <div class="movie-result">
+                <div class="result-content"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+        var flag = true;
+        //var newDiv = document.createElement("div")
+        //newDiv.className = "result-content"; 
+        function showMovieItem(idItem) {
+            $.ajax({
+                type: 'GET',
+                url: 'https://localhost:44307/api/Home/GetMovieByCate/' + $(idItem).text(),
+                contentType: 'json',
+                success: function (result) {
+                    if (flag == false) {
+                        $(".result-content").empty();
+                    }
+                    $.each(result, function (index, val) {
+                        var photoPath = "/imgs/films/" + val.photoPath;
+                        var title = val.title;
+                        var hour = val.hour;
+                        var director = val.director;
+                        var star = val.star;
+                        var description = val.description;
+
+                        var content = $(
+                            ' <div class="movie-item row" style="margin-top:20px;" > ' +
+                            ' <div class="item-info col-md-9"> ' +
+                            '  <img src="' + photoPath + '" asp-append-version="true" style="width:28%; float: left; clear: both" /> ' +
+                            '   <div class="movie-description" style="float:left;width:65%"> ' +
+                            '      <h5 style="text-transform:uppercase">' + title + '</h5>' +
+                            '      <span>' + hour + 'hours | ' + $(idItem).text() + '</span> <br /> ' +
+                            '     <p style="font-size:14px;"> ' +
+                            '        <strong>Directed by</strong> ' + director + ' <br /> ' +
+                            '       <strong>Stars</strong> ' + star + '<br /> ' + description +
+                            '    </p> ' +
+                            '   </div> ' +
+                            '  </div > ' +
+                            '  </div > ' +
+                            ' <div class="item-timestamp col-md-3"> ' +
+                            '  </div > ');
+
+                        $('.result-content').append(content);
+                    });
+                    $(".movie-result").html($('.result-content'));
+                    flag = false;
+                }
+            })
+        };
+
+    </script>
+
+</div>
+
+
+@section Scripts {
+    <script>
+
+        var carousel = $(".main-carousel"),
+            currdeg = 0;
+
+        function swapImages() {
+            currdeg = currdeg - 60;
+            carousel.css({
+                "-webkit-transform": "rotateY(" + currdeg + "deg)",
+                "-moz-transform": "rotateY(" + currdeg + "deg)",
+                "-o-transform": "rotateY(" + currdeg + "deg)",
+                "transform": "rotateY(" + currdeg + "deg)"
+            });
+        }
+
+        function swapImages2() {
+            currdeg = currdeg + 60;
+            carousel.css({
+                "-webkit-transform": "rotateY(" + currdeg + "deg)",
+                "-moz-transform": "rotateY(" + currdeg + "deg)",
+                "-o-transform": "rotateY(" + currdeg + "deg)",
+                "transform": "rotateY(" + currdeg + "deg)"
+            });
+        }
+
+        setInterval(swapImages, 2500);
+
+        $(".next").on("click", swapImages);
+
+        $(".prev").on("click", swapImages2);
+
+        $("#tile-1 .nav-tabs a").click(function () {
+            var position = $(this).parent().position();
+            var width = $(this).parent().width();
+            $("#tile-1 .slider").css({ "left": + position.left, "width": width });
+        });
+        var actWidth = $("#tile-1 .nav-tabs").find(".active").parent("li").width();
+        var actPosition = $("#tile-1 .nav-tabs .active").position();
+        $("#tile-1 .slider").css({ "left": + actPosition.left, "width": actWidth });
+
+
+
+    </script>
+}
+

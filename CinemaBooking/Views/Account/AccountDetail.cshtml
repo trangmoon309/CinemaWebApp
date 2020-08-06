@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewData["Title"] = "AccountDetail";
+    Layout = "~/Pages/Shared/_MyLayout.cshtml";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@section Styles {
+    <link href="~/css/profile.css" rel="stylesheet" />
+}
+
+@model CinemaBooking.ViewModels.Account.AccountDetailViewModel;
+
+
+    <div class="container bootstrap snippet" style="background-color: rgba(255,255,255,1);padding:40px 40px;color:black;">
+        <div class="row">
+            <div class="col-sm-3">
+                <!--left col-->
+
+
+                <div class="text-center">
+                    <img src="https://cdn.lowgif.com/small/9edabcdda0d88b9c-8920-movie-forum-avatars-profile-photos-avatar-abyss.gif" class="avatar img-circle img-thumbnail" alt="avatar">
+                    <h1 style="font-size: 1.5rem">@Model.UserName</h1>
+                </div>
+
+                <div class="panel panel-default" style="text-align: center;">
+                    <div class="panel-body">
+                        <i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i>
+                    </div>
+                </div>
+
+            </div><!--/col-3-->
+            <div class="col-sm-9">
+                <ul class="nav nav-tabs"  style="margin-bottom:30px;">
+                    <li class="active"><a data-toggle="tab" href="#home">Thông tin cá nhân</a></li>
+                </ul>
+
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home">
+                        <form class="form" method="post" asp-action="AccountDetail" asp-controller="Account" id="registrationForm">
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="first_name"><h5>Họ tên</h5></label>
+                                    <input type="text" class="form-control" id="first_name" asp-for="@Model.FullName" placeholder="Họ tên" title="Họ tên của bạn." value="@Model.FullName">
+                                    <input asp-for="@Model.UserName" value="@Model.UserName" type="hidden" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="phone"><h5>Số điện thoại</h5></label>
+                                    <input type="text" class="form-control" id="phone" asp-for="@Model.PhoneNumber" placeholder="Số điện thoại" title="Số điện thoại của bạn."  value="@Model.PhoneNumber">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="email"><h5>Email</h5></label>
+                                    <input type="email" class="form-control" id="email" asp-for="@Model.Email" placeholder="you@email.com" title="Email của bạn."  value="@Model.Email">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="password"><h5>Mật khẩu mới</h5></label>
+                                    <input type="password" class="form-control" id="password"  asp-for="@Model.Password" placeholder="password" title="Mật khẩu của bạn."  value="@Model.Password">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="password2"><h5>Nhập lại mật khẩu mới</h5></label>
+                                    <input type="password" class="form-control"  asp-for="@Model.ConfirmPassword" id="password2" placeholder="password2" title="Xác nhận mật khẩu mới">
+                                </div>
+                            </div>
+                            <div asp-validation-summary="All" class="text-success"></div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <br>
+                                    <button class="btn btn btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Lưu thay đổi</button>
+                                    <a class="btn btn btn-danger" type="reset" style="color:white" asp-action="Main" asp-controller="Home"><i class="glyphicon glyphicon-repeat"></i> Quay lại</a>
+                                </div>
+                            </div>
+
+                        </form>
+                        <hr>
+                    </div><!--/tab-pane-->
+                </div><!--/tab-content-->
+            </div><!--/col-9-->
+        </div><!--/row-->
+    </div>
+
+
+<script>
+    $(document).ready(function () {
+    //source:  https://bootsnipp.com/snippets/5Moza
+        var readURL = function (input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.avatar').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(".file-upload").on('change', function () {
+            readURL(this);
+        });
+    });
+</script>

@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "ConfirmEmail";
+    Layout = "~/Pages/Shared/_MyLayout.cshtml";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+
+    <div class="container" style="font-family: 'Roboto Slab', serif;">
+        <h3>Bạn đã hoàn thành đăng ký</h3>
+        <h3>Vui lòng nhấn nút <span class="text-danger">"Confirm Email"</span> để xác thực email và đăng nhập thành công!</h3>
+        <form method="post" asp-action="ConfirmEmailHandler" asp-controller="ConfirmInfo" asp-route-userId="@ViewBag.userId" asp-route-token="@ViewBag.token">
+            <input type="submit" class="btn btn-danger" style="margin-top: 30px;" value="Confirm Email" />
+        </form>
+        <img src="~/imgs/giphy.gif" width="10%" style="position:absolute;top:40%;left:22%" />
+    </div>
+

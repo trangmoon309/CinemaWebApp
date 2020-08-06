@@ -1,0 +1,210 @@
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<CinemaBooking.Models.ApplicationUser> signInManager;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap" rel="stylesheet">
+    <link href="~/css/mycss.css" rel="stylesheet" />
+    <script src="~/js/site.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+    @RenderSection("Styles", required: false)
+
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 m-auto d-none d-lg-block">
+                    <a asp-action="Main" asp-controller="Home">
+                        <img class="logo" src="~/imgs/logoo.png" alt="">
+                    </a>
+                </div>
+                <div class="col-md-12 col-lg-9">
+                    <nav class="navbar navbar-expand-md">
+                        <ul class="navbar-nav">
+                            <li class="nav-item p-3">
+                                <h6><i class="fa fa-map-marker"></i> <span><strong>Tầng 3 Coop Mart</strong><br>Thanh Khê, Đà Nẵng</span></h6>
+                            </li>
+                            <li class="nav-item p-3">
+                                <h6><i class="fa fa-phone"></i> <span><strong><span class="ringo-phone">+38 (999) 9999</span></strong><br> <a href="#" class="callback-ringo">Response 24/24</a></span></h6>
+                            </li>
+                            <li class="nav-item p-3">
+                                <h6>
+                                    <a href="https://www.facebook.com/galaxycinevn/" target="_blank"><i class="fa fa-facebook"></i> <span><strong><span class="ringo-phone">Galaxy Cinema</span></strong></span></a>
+                                </h6>
+                            </li>
+                            <li class="nav-item p-3">
+                                <h6>
+                                    <a href="https://www.instagram.com/galaxycinema/" target="_blank"><i class="fa fa-instagram"></i> <span><strong><span class="ringo-phone">galaxycinema</span></strong></span></a>
+                                </h6>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <nav id="default2" class="navbar navbar-expand-md navbar-light default2">
+                        <div id="nav-size" class="container-fuil">
+                            <div class="row">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+
+                                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                                    <!--Navbar LEFT-->
+                                    <ul class="navbar-nav mr-auto">
+                                        <li class="nav-item active item-nav">
+                                            <a style="color:white;" class="nav-link" asp-action="Main" asp-controller="Home">TRANG CHỦ</a>
+                                        </li>
+                                        <li class="nav-item active item-nav">
+                                            <a style="color:white;" class="nav-link" asp-action="ListFilm" asp-controller="Film">LỊCH CHIẾU</a>
+                                        </li>
+                                        <li class="nav-item active item-nav">
+                                            <a style="color:white;" class="nav-link" asp-action="Contact" asp-controller="Home">LIÊN HỆ</a>
+                                        </li>
+                                        @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                                        {
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle item-nav" style="color:white;" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">QUẢN LÝ</a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                                    <a class="dropdown-item" asp-action="CreateFilm" asp-controller="Film" style="color:black">THÊM PHIM MỚI</a>
+                                                    <a class="dropdown-item" asp-action="CreateSchedule" asp-controller="Film" style="color:black">LỊCH CHIẾU</a>
+                                                    <a class="dropdown-item" href="#" style="color:black">TÀI KHOẢN</a>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+
+                                    @if (!signInManager.IsSignedIn(User))
+                                    {
+                                        <!--Navbar RIGHT-->
+                                        <ul class="navbar-nav navbar-right">
+                                            <li class="nav-item active head-register">
+                                                <a asp-action="Register" asp-controller="Account" class="nav-link " style="color: white">
+                                                    ĐĂNG KÍ
+                                                </a>
+                                            </li>
+                                            <li class="nav-item head-login">
+                                                <a asp-action="Login" asp-controller="Account" class="nav-link " style="color: white">
+                                                    ĐĂNG NHẬP
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                            <form method="post" asp-action="Logout" asp-controller="Account">
+                                                <ul class="navbar-nav navbar-right">
+                                                    <li class="nav-item dropdown" style="line-height: 25px;">
+                                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
+                                                            <i class="fa fa-user-circle" style="font-size:45px;"></i>
+                                                        </a>
+                                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                            <h5  class="dropdown-item">@User.FindFirst(System.Security.Claims.ClaimTypes.Name).Value</h5>
+                                                            <a class="dropdown-item" asp-action="AccountDetail" asp-controller="Account" style="color:black">Thông tin cá nhân</a>
+                                                            <a class="dropdown-item" asp-action="BookingHistory" asp-controller="Film" style="color:black">Lịch sử giao dịch</a>
+                                                            <input class="dropdown-item" type="submit" value="ĐĂNG XUẤT">
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+                                            </form>
+                                        
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                    <!--Navbar2-->
+                </div>
+                <!--Col right-->
+            </div>
+            <!--Row-->
+        </div>
+        <!--Container-->
+    </header>
+
+    <div class="main-page">
+        <main role="main" class="container" style="padding-top: 100px;padding-bottom:100px;color:white;">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <!-- Site footer -->
+    <footer class="site-footer p-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <h6>CHĂM SÓC KHÁCH HÀNG</h6>
+                    <p class="text-justify">
+                        <strong>Hotline:</strong> 0269 3838 999 <br />
+                        <strong>Giờ làm việc:</strong> 8h00-22h00 tất cả các ngày trong tuần <br />
+                        <strong>Email:</strong> contact@touchcinema.com
+                    </p>
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                    <h6>CHI NHÁNH</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Đà Nẵng</a></li>
+                        <li><a href="#">Hồ Chí Minh</a></li>
+                        <li><a href="#">Cà Mau</a></li>
+                        <li><a href="#">An Giang</a></li>
+                        <li><a href="#">Hà Nội</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                    <h6>Quick Links</h6>
+                    <ul class="footer-links">
+                        <li><a href="http://scanfcode.com/about/">About Us</a></li>
+                        <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
+                        <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <p class="copyright-text">
+                        Copyright &copy; 2020 All Rights Reserved by
+                        <a href="#">Huynh Phuong Trang</a>.
+                    </p>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <ul class="social-icons">
+                        <li><a class="facebook" href="https://www.facebook.com/galaxycinevn/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="twitter" href="https://www.instagram.com/galaxycinema/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                        <li><a class="youtube" href="https://www.youtube.com/user/galaxymovies" target="_blank"><i class="fa fa-youtube"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>
+

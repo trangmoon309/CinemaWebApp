@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewData["Title"] = "FilmDetail";
+    Layout = "~/Pages/Shared/_MyLayout.cshtml";
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@section Styles {
+    <link href="~/css/filmdetail.css" rel="stylesheet" />
+}
+@model CinemaBooking.ViewModels.Film.MovieViewModel;
+
+<div id="ContainerHL">
+    <div id="MainPoster" class="col-md-3">
+        @{ 
+            var photoPath = "/imgs/films/" + (@Model.Photo ?? "default.jpg");
+        }
+        <img src="@photoPath" width="100%" />
+        <div id="Ratings">
+            <table>
+                <tr>
+                    <td><b><span style="color:rgb(200,170,30);">Thời lượng:</span></b></td>
+                    <td><b>@Model.Hour</b></td>
+                </tr>
+                <tr>
+                    <td><b><span style="color:rgb(200,170,30);">Đạo diễn:</span></b></td>
+                    <td><b>@Model.Director</b></td>
+                </tr>
+                <tr>
+                    <td><b><span style="color:rgb(200,170,30);">Diễn viên:</span></b></td>
+                    <td><b>@Model.Star</b></td>
+                </tr>
+                <tr>
+                    <td><b><span style="color:rgb(200,170,30);">Thể loại:</span></b></td>
+                    <td><b>@Model.Type</b></td>
+                </tr>
+
+            </table>
+
+        </div>
+    </div>
+
+    <div id="TitleHL" class="col-md-9" style="padding-left:0"><b>@Model.Title</b></div>
+
+</div>
+    <div id="SelMovie">
+        <div id="MovieInfoMain">
+            <div id="Title"><b> </b></div>
+            <div id="UserRating"></div>
+            <div id="DetailsTop"></div>
+            <div id="DetailsTopCover"></div>
+            <div id="DetailsBottom"></div>
+            <div id="DetailsBottomCover"></div>
+            <div id="Details">
+                <p>@Model.Description</p>
+                @if (Model.Schedule.Count == 0)
+                {
+                    <p class="text-danger">Hiện không có khung giờ nào trong hôm nay cho bộ phim này!</p>
+                }
+                else
+                {
+                    <p>Các khung giờ đang được công chiêu trong hôm nay:</p>
+                    for (int i = 0; i < Model.Schedule.Count; i++)
+                    {
+                        <a class="btn btn-danger my-btn"
+                             asp-route-TimeID="@Model.Schedule[i].Id"
+                             asp-action="BookingTicket" asp-controller="Film" 
+                             asp-route-MovieID="@Model.Id">
+                             @Model.Schedule[i].fromTime
+                        </a>
+                    }
+                }
+            </div>
+
+        </div>
+    </div>
+
+<div id=BTN_Back><a asp-action="Main" asp-controller="Home" style="color:white">BACK</a></div>

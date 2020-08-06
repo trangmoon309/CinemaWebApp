@@ -1,0 +1,27 @@
+﻿
+
+.title {
+    color: white;
+    padding-bottom: 30px;
+    animation: focus-in-expand-fwd 2.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite;
+}
+@keyframes focus-in-expand-fwd {
+    0% {
+        letter-spacing: -0.5em;
+        transform: translateZ(-800px);
+        filter: blur(12px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateZ(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+
+.gif-heart {
+    position: absolute;
+}
+

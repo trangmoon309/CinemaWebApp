@@ -1,0 +1,111 @@
+﻿
+
+#session-overview {
+    padding: 0 20px;
+    font-size: 18px;
+}
+
+.booking-container {
+    height: 1000px;
+    background-color: white;
+    color: black;
+    padding: 20px 0;
+}
+
+
+.film-details:after{
+    clear:both;
+}
+.underlined {
+    border-bottom-width: 2px;
+    border-bottom-color: #e5e5e5;
+    border-bottom-style: solid;
+    display: block;
+}
+.underlined .page-heading {
+        margin-bottom: 8px;
+    }
+
+.highlight-foreground {
+    color: #dc3d3d;
+}
+
+.page-heading {
+    font-size: 21px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#ticket-section{
+    margin-top: 30px;
+    padding: 30px;
+}
+
+#price-summary {
+    min-height: 60px;
+    border-radius: 4px;
+    background-color: #e5e5e5;
+    overflow: hidden;
+    padding: 5px 0 7px 12px;
+    font-size: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 50px;
+    font-size: 22px;
+    font-family: 'Roboto',sans-serif;
+}
+#ticket-table td {
+    line-height: 35px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+#ticket-table tr {
+    border-bottom: 1px solid #e9e9e9;
+}
+
+input.numeric, select.numeric {
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #c6c7c8;
+}
+
+input.short, select.short {
+    border-radius: 4px;
+    width: 30px;
+}
+
+#ticket-table {
+    text-align: center;
+}
+
+.name{
+    text-align:left;
+}
+
+.icon-button {
+    border-style: none;
+    background-color: transparent;
+    border-radius: 50%;
+    width:35px;
+    font-size:20px;
+    color:white;
+}
+
+.add {
+    background-color: #dc3d3d;
+}
+
+.minus {
+    background-color: #c6c7c8;
+}
+
+.btn-total {
+    float: right;
+    font-size: 20px;
+    margin-top: 20px;
+    padding-left: 23px;
+    padding-right: 23px;
+}

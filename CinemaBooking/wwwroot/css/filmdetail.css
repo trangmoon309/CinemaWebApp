@@ -1,0 +1,151 @@
+﻿
+#BTN_Back {
+    opacity: 0.7; /*hover*/
+    color: white;
+    font-size: 18px;
+    position: relative;
+    width: 140px;
+    height: auto;
+    border-radius: 10px;
+    background-color: rgba(100,100,100,0.9);
+    z-index: 10;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    top: 20px;
+    padding: 10px 0;
+}
+
+    #BTN_Back:hover {
+        opacity: 1;
+        cursor: pointer;
+        transition:.5s;
+        text-decoration:none;
+    }
+
+
+#SelMovie {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 600px;
+    background-color: rgb(80,80,80);
+    border-radius: 10px;
+    opacity: 0.8;
+    -webkit-box-shadow: 0px 0px 13px 2px rgba(0,0,0,0.7);
+    -moz-box-shadow: 0px 0px 13px 2px rgba(0,0,0,0.7);
+    box-shadow: 0px 0px 13px 2px rgba(0,0,0,0.7);
+}
+
+#ContainerHL {
+    display: block;
+    width: 100%;
+    padding: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#MainPoster {
+    position: relative;
+    z-index: 10;
+    top: 40px;
+    left: 30px;
+    float: left;
+}
+
+#Ratings {
+    position: relative;
+    z-index: 10;
+    top: 20px;
+    left: 10px;
+}
+
+    #Ratings table td {
+        font-size: 12px;
+        width: 138px;
+        height: 25px;
+        color: rgb(200,200,200);
+    }
+
+
+#TitleHL {
+    position: relative;
+    left: 60px;
+    float: left;
+    overflow: hidden;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 45px;
+    padding-right: 30px;
+    color: rgb(200,200,10);
+    z-index: 10;
+    top: 19px;
+}
+
+.stars {
+    float: left;
+}
+
+
+#MovieInfoMain {
+    font-family: Arial;
+    position: absolute;
+    z-index: 3;
+    width: 730px;
+    top: 27px;
+    left: 334px;
+    height: 450px;
+    overflow: hidden;
+}
+
+#DetailsTopCover {
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    height: 15px;
+    background-color: rgb(80,80,80);
+    padding-top: 10px;
+    padding-right: 10px;
+    z-index: 4;
+}
+
+#DetailsTop {
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    height: 6%;
+    background-color: rgb(30,30,30);
+    padding-top: 10px;
+    padding-right: 10px;
+    -webkit-box-shadow: 0px 10px 10px 0px rgba(30,30,30,1);
+    -moz-box-shadow: 0px 10px 10px 0px rgba(30,30,30,1);
+    box-shadow: 0px 10px 10px 0px rgba(30,30,30,1);
+    z-index: 4;
+}
+
+#DetailsBottom {
+    position: absolute;
+    top: 440px;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(30,30,30);
+    padding-top: 10px;
+    padding-right: 10px;
+    -webkit-box-shadow: 0px -10px 10px 0px rgba(30,30,30,1);
+    -moz-box-shadow: 0px -10px 10px 0px rgba(30,30,30,1);
+    box-shadow: 0px 10px -10px 0px rgba(30,30,30,1);
+    z-index: 4;
+}
+
+#Details {
+    position: absolute;
+    top: 90px;
+    width: 100%;
+    height: 100%;
+    background-color: #3C3A3A;
+    overflow: auto;
+    padding: 10px 15px;
+}
+

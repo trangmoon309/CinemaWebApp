@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Pages/Shared/_MyLayout.cshtml";
+}
+
+@section Styles {
+    <link href="~/css/register.css" rel="stylesheet" />
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+
+@model CinemaBooking.ViewModels.Account.RegisterViewModel;
+
+<form asp-action="Register" asp-controller="Account">
+    <div class="container">
+        <div class="row justify-content-center">
+            <img src="~/imgs/gif1.gif" style="position:absolute; width:45%;left:0;bottom:0" />
+            <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+                <div class="row">
+                    <div class="col text-center">
+                        <h1 class="title">Đăng Kí Thành Viên</h1>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col">
+                        <input class="form-control" placeholder="First Name" asp-for="@Model.FirstName">
+                        <span asp-validation-for="FirstName"></span>
+                    </div>
+                    <div class="col">
+                        <input class="form-control" placeholder="Last Name" asp-for="@Model.LastName">
+                        <span asp-validation-for="LastName"></span>
+                    </div>
+                </div>
+                <div class="row align-items-center mt-4">
+                    <div class="col">
+                        <input type="email" class="form-control" placeholder="Email" asp-for="@Model.Email">
+                        <span asp-validation-for="Email"></span>
+                    </div>
+                </div>
+                <div class="row align-items-center mt-4">
+                    <div class="col">
+                        <input class="form-control" placeholder="User Name" asp-for="@Model.UserName">
+                        <span asp-validation-for="UserName"></span>
+                    </div>
+                </div>
+                <div class="row align-items-center mt-4">
+                    <div class="col">
+                        <input class="form-control" placeholder="Phone Number" asp-for="@Model.PhoneNumber">
+                        <span asp-validation-for="LastName"></span>
+                    </div>
+                </div>
+                <div class="row align-items-center mt-4">
+                    <div class="col">
+                        <input class="form-control" placeholder="Password" asp-for="@Model.Password">
+                    </div>
+                    <div class="col">
+                        <input class="form-control" placeholder="Confirm Password" asp-for="@Model.ConfirmPassword">
+                    </div>
+                </div>
+                <div class="row justify-content-start mt-4">
+                    <div class="col">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" asp-for="@Model.IsConfirm">
+                                I Read and Accept <a href="https://www.froala.com">Terms and Conditions</a>
+                                <span asp-validation-for="IsConfirm"></span>
+                            </label>
+                        </div>
+                        <span asp-validation-for="Password"></span>
+                        <span asp-validation-for="ConfirmPassword"></span>
+                        <div asp-validation-summary="All" style="list-style-type:none"></div>
+                        <div style="width:100%;text-align:center">
+                            <input type="submit" value="ĐĂNG KÍ" class="btn mt-4 btn-register text-white" style="background-color:#A12914;border:none;
+                                    padding:8px 30px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

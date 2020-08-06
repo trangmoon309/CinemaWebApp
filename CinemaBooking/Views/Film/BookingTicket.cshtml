@@ -1,0 +1,271 @@
+﻿
+@{
+    ViewData["Title"] = "BookingTicket";
+    Layout = "~/Pages/Shared/_MyLayout.cshtml";
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@section Styles {
+    <link href="~/css/bookticket.css" rel="stylesheet" />
+}
+
+@model CinemaBooking.ViewModels.Film.BookingViewModel;
+
+@{
+    var photoPath = "/imgs/films/" + (@Model.Movie.PhotoPath ?? "default.jpg");
+}
+
+<form method="post" asp-action="BookingTicket" asp-controller="Film">
+    <section class="booking-container">
+        <section id="session-overview">
+            <input type="hidden" asp-for="@Model.UserID" value="@Model.UserID" />
+            <input type="hidden" asp-for="@Model.UserName" value="@Model.UserName" />
+            <input type="hidden" asp-for="@Model.TimeID" value="@Model.TimeID" />
+            <input type="hidden" asp-for="@Model.Movie.Id" value="@Model.Movie.Id" />
+
+            <div class="session-details" style="display:flex">
+                <div class="poster-container" style="display:block">
+                    <img src="@photoPath" width="160px;" />
+                </div>
+                <input type="hidden" asp-for="@Model.Movie.PhotoPath" value="@Model.Movie.PhotoPath" />
+
+
+                <div class="film-details" style="display:block;padding-left:20px;">
+                    <div class="movie-title-container">
+                        <h2>
+                            <span>@Model.Movie.Title</span>
+                        </h2>
+                    </div>
+                    <div class="site-details">
+                        <i class="fa fa-clock-o"></i><b> Thời lượng:</b> @Model.Movie.Hour <br />
+                        <i class="fa fa-tv"></i> <b>Đạo diễn</b>: @Model.Movie.Director <br />
+                        <i class="fa fa-user-plus"></i> <b>Diễn viên:</b> @Model.Movie.Star <br />
+                        <i class="fa fa-newspaper-o"></i> <b>Mô tả: </b> @Model.Movie.Description <br />
+
+                    </div>
+                    <input type="hidden" asp-for="@Model.Movie.Hour" value="@Model.Movie.Hour" />
+                    <input type="hidden" asp-for="@Model.Movie.Director" value="@Model.Movie.Director" />
+                    <input type="hidden" asp-for="@Model.Movie.Star" value="@Model.Movie.Star" />
+                    <input type="hidden" asp-for="@Model.Movie.Description" value="@Model.Movie.Description" />
+                </div>
+            </div>
+        </section>
+
+
+        <div class="form-group row" style="font-size:20px;">
+            <label asp-for="@Model.FullName" class="col-md-2" style="padding-left:36px;padding-top:50px;" for="fullName"></label>
+            <div class="col-md-8" style="padding-top:45px;">
+                <input type="text" asp-for="@Model.FullName" class="form-control" id="fullName" />
+            </div>
+        </div>
+
+        <div class="form-group row" style="font-size:20px;">
+            <label asp-for="@Model.PhoneNumber" class="col-md-2" style="padding-left:36px;padding-top:20px;" for="teleNum"></label>
+            <div class="col-md-8" style="padding-top:15px;">
+                <input type="text" asp-for="@Model.PhoneNumber" class="form-control" id="teleNum" />
+            </div>
+        </div>
+
+        <section id="ticket-section" style="opacity: 1;">
+            <div class="underlined">
+                <div class="page-heading highlight-foreground">
+                    Chọn ghế Số vé
+                </div>
+            </div>
+
+            <div id="ticket-table-container">
+                <div class="ticket-table">
+                    <table id="ticket-table" data-max-quantity="10" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th style="width:60%"></th>
+                                <th style="width:10%">Chi phí</th>
+                                <th class="quantity" style="width:20%">Số lượng</th>
+                                <th class="subtotal" style="width:10%">Tổng cộng</th>
+                            </tr>
+                        </thead>
+                        <tbody class="ticket-type">
+                            <tr>
+                                <td class="name" property="name">Trẻ em</td>
+                                <td><span id="priceTicket1">30,000</span></td>
+
+                                <td class="quantity">
+
+                                    <div>
+
+                                        <button class="minus icon-button" onclick="minusNumber(1)" type="button">-</button>
+
+                                        <input type="tel" class="short numeric" value="0" id="num1">
+
+                                        <button class="add icon-button" onclick="addNumber(1)" type="button">+</button>
+
+                                    </div>
+                                </td>
+                                <td><span class="sub-total" id="total1"><span>0,00</span></span></td>
+                            </tr>
+
+                            <tr class="">
+                                <td class="name" property="name">Học sinh, sinh viên</td>
+                                <td><span id="priceTicket2">45,000</span></td>
+
+                                <td class="quantity">
+
+                                    <div>
+
+                                        <button class="minus icon-button" id="minusBtn" onclick="minusNumber(2)" type="button">-</button>
+
+                                        <input type="tel" class="short numeric" value="0" id="num2">
+
+                                        <button class="add icon-button" id="addBtn" onclick="addNumber(2)" type="button">+</button>
+
+                                    </div>
+                                </td>
+                                <td><span class="sub-total" id="total2"><span>0,00</span></span></td>
+                            </tr>
+
+                            <tr class="">
+                                <td class="name" property="name">Người lớn</td>
+                                <td><span id="priceTicket3">65,000</span></td>
+
+                                <td class="quantity">
+
+                                    <div>
+
+                                        <button class="minus icon-button" onclick="minusNumber(3)" type="button">-</button>
+
+                                        <input type="tel" class="short numeric" value="0" id="num3">
+
+                                        <button class="add icon-button" onclick="addNumber(3)" type="button">+</button>
+
+                                    </div>
+                                </td>
+                                <td><span class="sub-total" id="total3"><span>0,00</span></span></td>
+                            </tr>
+
+                            <tr class="">
+                                <td class="name" property="name">Người cao tuổi</td>
+                                <td><span id="priceTicket4">75,000</span></td>
+
+                                <td class="quantity">
+
+                                    <div>
+
+                                        <button class="minus icon-button" onclick="minusNumber(4)" type="button">-</button>
+
+                                        <input type="tel" class="short numeric" value="0" id="num4">
+
+                                        <button class="add icon-button" onclick="addNumber(4)" type="button">+</button>
+
+                                    </div>
+                                </td>
+                                <td><span class="sub-total" id="total4"><span>0,00</span></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+
+            <div id="price-summary">
+                <div>
+                    <div>Phí đặt vé</div>
+                    <div class="total-label"><b>Tổng cộng</b></div>
+                </div>
+                <div>
+                    <div class="booking-fee-value"><span id="fee">15,000</span><span> x </span> <span id="numberOfFee">0</span></div>
+                    <div class="total-value" style="padding-right:10px;"><span id="total">0,00 </span><span> VNĐ</span></div>
+                </div>
+            </div>
+
+            <input type="hidden" asp-for="@Model.TotalBill" value="0" />
+            <input type="hidden" asp-for="@Model.Amount" value="0" />
+
+            <div asp-validation-summary="All;" class="text-danger"></div>
+
+            <div id="ticket-actions">
+                <button class="btn btn-danger btn-total" type="submit"><span>Thanh toán</span></button>
+            </div>
+
+        </section>
+    </section>
+</form>
+
+
+
+@section Scripts {
+    <script type="text/javascript">
+
+        function minusNumber(i) {
+
+            var IdNumberOfTypeTicker = "num" + i;
+            var IdTotalPriceOfTypeTicket = "total" + i;
+            var IdPriceOfTypeTicket = "priceTicket" + i;
+
+            var number = document.getElementById(IdNumberOfTypeTicker).value;
+            var PriceOfTypeTicket = parseFloat(document.getElementById(IdPriceOfTypeTicket).innerText).toFixed(3);
+            var numberOfFee = parseInt(document.getElementById("numberOfFee").innerText);
+
+
+            var totalPriceTicket = parseFloat(PriceOfTypeTicket * number).toFixed(3);
+
+            if (number != 0) {
+                var total = parseFloat(document.getElementById("total").innerText).toFixed(3);
+                var totalPrice = parseFloat(total) - parseFloat(totalPriceTicket) - parseFloat(15.000);
+
+
+                document.getElementById("total").innerText = totalPrice.toFixed(3);
+
+                document.getElementById("fee").innerText = parseFloat(15.000).toFixed(3);
+
+                number--;
+                document.getElementById("numberOfFee").innerText = --numberOfFee;
+                document.getElementById(IdNumberOfTypeTicker).value = number;
+                document.getElementById(IdTotalPriceOfTypeTicket).innerText = parseFloat(PriceOfTypeTicket * number).toFixed(3);
+
+                document.getElementById("TotalBill").value = parseFloat(totalPrice).toFixed(3);
+                document.getElementById("Amount").value = numberOfFee;
+            }
+
+
+
+        }
+
+        function addNumber(i) {
+
+            var IdNumberOfTypeTicker = "num" + i;
+            var IdTotalPriceOfTypeTicket = "total" + i;
+            var IdPriceOfTypeTicket = "priceTicket" + i;
+
+            var number = document.getElementById(IdNumberOfTypeTicker).value;
+            var PriceOfTypeTicket = parseFloat(document.getElementById(IdPriceOfTypeTicket).innerText).toFixed(3);
+            var numberOfFee = parseInt(document.getElementById("numberOfFee").innerText);
+
+
+            if (number != 10) {
+                number++;
+                document.getElementById("numberOfFee").innerText = ++numberOfFee;
+
+                document.getElementById(IdNumberOfTypeTicker).value = number;
+                var totalPriceTicket = parseFloat(PriceOfTypeTicket * number).toFixed(3);
+                document.getElementById(IdTotalPriceOfTypeTicket).innerText = totalPriceTicket;
+
+                document.getElementById("fee").innerText = parseFloat(15.000).toFixed(3);
+
+                var total = parseFloat(document.getElementById("total").innerText).toFixed(3);
+
+                var totalPrice = parseFloat(total) + parseFloat(totalPriceTicket) + parseFloat(15.000);
+
+
+                document.getElementById("total").innerText = totalPrice.toFixed(3);
+
+                document.getElementById("TotalBill").value = parseFloat(totalPrice).toFixed(3);
+                document.getElementById("Amount").value = numberOfFee;
+
+            }
+
+        }
+
+    </script>
+}

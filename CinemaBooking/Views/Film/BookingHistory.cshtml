@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewData["Title"] = "BookingHistory";
+    Layout = "~/Pages/Shared/_MyLayout.cshtml";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@section Styles {
+    <link href="~/css/bookinghistory.css" rel="stylesheet" />
+}
+
+@model List<CinemaBooking.ViewModels.Film.BookingHistoryViewModel>;
+
+<div class="container">
+    @if (Model.Count != 0)
+    {
+        <table class="rwd-table" style="text-align:center;">
+            <tbody>
+                <tr>
+                    <th>Mã vé</th>
+                    <th>Ngày đặt</th>
+                    <th>Họ tên</th>
+                    <th>Số điện thoại</th>
+                    <th>Tên phim</th>
+                    <th>Thời gian</th>
+                    <th>Số lượng</th>
+                    <th>Tổng tiền</th>
+                </tr>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                <tr>
+                    <td data-th="Supplier Code">
+                        @Model[i].IDTicket
+                    </td>
+                    <td data-th="Supplier Name">
+                        @Model[i].BookingDate
+                    </td>
+                    <td data-th="Invoice Number">
+                        @Model[i].FullName
+                    </td>
+                    <td data-th="Invoice Date">
+                        @Model[i].PhoneNumber
+                    </td>
+                    <td data-th="Due Date">
+                        @Model[i].Title
+                    </td>
+                    <td data-th="Net Amount">
+                        @Model[i].FromTime
+                    </td>
+                    <td data-th="Due Date">
+                        @Model[i].Amount
+                    </td>
+                    <td data-th="Net Amount">
+                        @Model[i].Total
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        <h3 style="margin-top: 20px;" class="text-flicker-out-glow"><i class=" fa fa-heart" style="color: #BD2F16;"></i> Cảm ơn đã tin tưởng chúng tôi  <i class=" fa fa-heart" style="color: #BD2F16;"></i></h3>
+    }
+    else
+    {
+        <h5>Bạn chưa đặt vé nào</h5>
+        <a class="btn btn-danger" asp-action="ListFilm" asp-controller="Film"> Đặt vé ngay </a>
+    }
+</div>

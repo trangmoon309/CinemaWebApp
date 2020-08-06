@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewData["Title"] = "CreateSchedule";
+    Layout = "~/Pages/Shared/_MyLayout.cshtml";
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@section Styles {
+    <link href="~/css/createFilm.css" rel="stylesheet" />
+}
+
+@model CinemaBooking.ViewModels.Film.ScheduleCreateViewModel;
+
+<div class="container contact" style="overflow:hidden;height:auto">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="contact-info">
+                <img src="~/imgs/popcorn.gif" width="90%" />
+                <h4>Let's add many new schedules!</h4>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <form class="contact-form" style="color:black" asp-action="CreateSchedule" asp-controller="Film">
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="movieName">Tên Phim</label>
+                    <div class="col-sm-10">
+                        <select asp-for="@Model.movieName" class="form-control" id="movieName" onchange="showMovieDates()">
+                            @{
+                                for (int i = 0; i < Model.Movies.Count; i++)
+                                {
+                                    <option value="@Model.Movies[i].Title">@Model.Movies[i].Title</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <span asp-validation-for="@Model.movieName"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="movieDates" asp-for="@Model.Date">Ngày</label>
+                    <div class="col-sm-10">
+                        <select asp-for="@Model.Date" class="form-control" id="movieDates">
+                        </select>
+                    </div>
+                    <span asp-validation-for="Date"></span>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="fromTime" asp-for="@Model.FromTime">Khung giờ</label>
+                    <div class="col-sm-10">
+                        <select asp-for="@Model.FromTime" class="form-control" id="fromTime">
+                            <option value="9:10">9:10</option>
+                            <option value="10:00">10:00</option>
+                            <option value="10:50">10:50</option>
+                            <option value="11:15">11:15</option>
+                            <option value="11:40">11:40</option>
+                            <option value="12:15">12:15</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:45">15:45</option>
+                            <option value="16:45">16:45</option>
+                            <option value="17:20">17:20</option>
+                            <option value="18:50">18:50</option>
+                            <option value="19:00">19:00</option>
+                            <option value="19:30">19:30</option>
+                            <option value="20:00">20:00</option>
+                            <option value="20:15">20:15</option>
+                            <option value="21:15">21:15</option>
+                            <option value="21:45">21:45</option>
+                            <option value="22:15">22:15</option>
+                            <option value="22:30">22:30</option>
+                            <option value="23:30">23:30</option>
+                        </select>
+                    </div>
+                    <span asp-validation-for="FromTime"></span>
+                </div>
+
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default" style="background-color:#D6A21C; margin-top: 30px;">Cập nhật</button>
+                    </div>
+                </div>
+
+                <img src="~/imgs/watching.png" width="40%" style="float:right" />
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+
+        var flag = true;
+        function showMovieDates() {
+            $.ajax({
+                type: 'GET',
+                url: 'https://localhost:44307/api/home/GetDatesOfMovie/' + $(movieName).val(),
+                contentType: 'json',
+                success: function (result) {
+                    $("#movieDates").empty();
+                    if (flag == false) {
+                        $(".result-content").empty();
+                    }
+                    $.each(result, function (index, val) {
+                        console.log(val);
+                        var content = $(
+                            '<option value="' + val + '">'+ val +'</option>'
+                        )
+                        $("#movieDates").append(content);
+                    });
+                    flag = false;
+                }
+            })
+        };
+
+        showMovieDates();
+
+    </script>
+}
+
+
