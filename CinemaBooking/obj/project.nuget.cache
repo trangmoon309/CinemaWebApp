@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Gz2upmSvnJ/JOWaZLInMULdCwVmf7kBwIc6HzdINbWHRVspS4VxgODzIwHYAlEg0fxyRqvZnvR0rshe5SF1yVg==",
+  "dgSpecHash": "Z+LfPRhY4FST8xZtm2+YmlI6M5NeNyc04TK4x/b46aWHX/HGNiRk4NGFMobfvGG5BtV027o5vBukrFg628pB0g==",
   "success": true,
-  "projectFilePath": "D:\\Self-learning\\(3).C#\\6.ASP.NET Core\\CinemaBooking\\CinemaBooking\\CinemaBooking.csproj",
+  "projectFilePath": "D:\\Self-learning\\(3).C#\\6.ASP.NET Core\\CinemaBooking\\CinemaWebApp\\CinemaBooking\\CinemaBooking.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\huynh\\.nuget\\packages\\jquery\\1.8.0\\jquery.1.8.0.nupkg.sha512",
     "C:\\Users\\huynh\\.nuget\\packages\\mailkit\\2.8.0\\mailkit.2.8.0.nupkg.sha512",

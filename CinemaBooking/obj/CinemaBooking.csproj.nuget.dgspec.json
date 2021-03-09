@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Self-learning\\(3).C#\\6.ASP.NET Core\\CinemaBooking\\CinemaBooking\\CinemaBooking.csproj": {}
+    "D:\\Self-learning\\(3).C#\\6.ASP.NET Core\\CinemaBooking\\CinemaWebApp\\CinemaBooking\\CinemaBooking.csproj": {}
   },
   "projects": {
-    "D:\\Self-learning\\(3).C#\\6.ASP.NET Core\\CinemaBooking\\CinemaBooking\\CinemaBooking.csproj": {
+    "D:\\Self-learning\\(3).C#\\6.ASP.NET Core\\CinemaBooking\\CinemaWebApp\\CinemaBooking\\CinemaBooking.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Self-learning\\(3).C#\\6.ASP.NET Core\\CinemaBooking\\CinemaBooking\\CinemaBooking.csproj",
+        "projectUniqueName": "D:\\Self-learning\\(3).C#\\6.ASP.NET Core\\CinemaBooking\\CinemaWebApp\\CinemaBooking\\CinemaBooking.csproj",
         "projectName": "CinemaBooking",
-        "projectPath": "D:\\Self-learning\\(3).C#\\6.ASP.NET Core\\CinemaBooking\\CinemaBooking\\CinemaBooking.csproj",
+        "projectPath": "D:\\Self-learning\\(3).C#\\6.ASP.NET Core\\CinemaBooking\\CinemaWebApp\\CinemaBooking\\CinemaBooking.csproj",
         "packagesPath": "C:\\Users\\huynh\\.nuget\\packages\\",
-        "outputPath": "D:\\Self-learning\\(3).C#\\6.ASP.NET Core\\CinemaBooking\\CinemaBooking\\obj\\",
+        "outputPath": "D:\\Self-learning\\(3).C#\\6.ASP.NET Core\\CinemaBooking\\CinemaWebApp\\CinemaBooking\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\huynh\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -26,6 +26,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -37,6 +38,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "MailKit": {
               "target": "Package",
@@ -117,7 +119,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
